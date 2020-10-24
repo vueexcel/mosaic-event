@@ -1,89 +1,69 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
+  <div>
+    <div>
+      <v-row no-gutters>
+        <v-col cols="12" class="text-center">
+          <span class="red--text overline pa-3">
+            Connect....anytime, anywhere !
+          </span>
+        </v-col>
+        <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
+          <v-img
+            :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
+            :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+            aspect-ratio="1"
+            class="grey lighten-2"
           >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+            <template v-slot:placeholder>
+              <v-row class="fill-height ma-0" align="center" justify="center">
+                <v-progress-circular
+                  indeterminate
+                  color="grey lighten-5"
+                ></v-progress-circular>
+              </v-row>
+            </template>
+          </v-img>
+        </v-col>
+      </v-row>
+    </div>
+    <div class="d-flex my-4">
+      <v-divider class="mt-3 warning"></v-divider>
+      <span class="px-3 orange--text text-uppercase">Live and Upcoming</span>
+      <v-divider class="mt-3 warning"></v-divider>
+    </div>
+    <card :items="eventsArray" />
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import { mapActions, mapGetters } from "vuex";
+import Card from "../components/card.vue";
 
 export default {
+  name: "index",
+  layout: "default",
   components: {
-    Logo,
-    VuetifyLogo
-  }
-}
+    Card,
+  },
+  data() {
+    return {
+      loading: false,
+    };
+  },
+  mounted() {
+    this.fetchEvents();
+  },
+  methods: {
+    ...mapActions("eventModule", ["fetchEvents"]),
+  },
+  computed: {
+    ...mapGetters("eventModule", ["eventsArray"]),
+  },
+};
 </script>
+
+<style scoped>
+.col {
+  padding: 0px;
+}
+</style>
