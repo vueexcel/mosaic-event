@@ -59,13 +59,13 @@ export default {
       light: true,
       themes: {
         light: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.lighten3,
-          secondary: colors.lightBlue.lighten3,
+          primary: "#1a1c20",
+          accent: '#ec0101',
+          secondary: '#f4f4f4',
           info: "#6a097d",
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          success: colors.green.accent3,
         }
       }
     }
