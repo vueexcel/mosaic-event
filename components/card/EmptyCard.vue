@@ -6,19 +6,9 @@
     class="secondary d-flex justify-center"
   >
     <v-card-actions class="pb-4">
-      <v-btn width="96%" outlined color="primary" @click="showDetails">
-        SHOW MORE EVENTS
+      <v-btn width="96%" outlined color="primary" to="/:details" class="px-10">
+        SHOW MORE
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
-
-<script>
-export default {
-  methods: {
-    showDetails() {
-      this.$router.push({ path: "/:details" });
-    },
-  },
-};
-</script>

@@ -16,7 +16,7 @@
 
 <script>
 import EmptyCard from "./EmptyCard";
-import MainCard from "./Card";
+import MainCard from "./MainCard";
 export default {
   components: {
     MainCard,

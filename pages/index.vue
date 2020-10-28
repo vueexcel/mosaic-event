@@ -9,7 +9,7 @@
       >
         <v-carousel
           cycle
-          :interval="4000"
+          :interval="`${Math.floor(Math.random() * 8000) + 4000}`"
           hide-delimiters
           :show-arrows="false"
           height="150px"

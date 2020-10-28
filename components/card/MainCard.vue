@@ -14,7 +14,7 @@
     </v-card-text>
 
     <v-card-actions class="d-flex pb-4 justify-center">
-      <v-btn width="96%" outlined color="primary" @click="showDetails">
+      <v-btn width="96%" outlined color="primary" to="/:details">
         Explore
       </v-btn>
     </v-card-actions>
@@ -27,12 +27,6 @@ export default {
     item: {
       type: Object,
       default: () => {},
-    },
-  },
-  methods: {
-    showDetails() {
-      this.$router.push({ path: "/:details" });
-      console.log("Route")
     },
   },
 };

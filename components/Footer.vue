@@ -9,9 +9,9 @@
             >
             <div class="d-flex mt-5">
               <img
-                v-for="(name, index) in socialLogo"
+                v-for="(logo, index) in logos"
                 :key="index"
-                :src="require(`../assets/footer/${name}`)"
+                :src="require(`../assets/footer/${logo}`)"
                 height="30px"
                 class="pa-1"
               />
@@ -56,7 +56,7 @@
 export default {
   data() {
     return {
-      socialLogo: [
+      logos: [
         "facebook-logo.png",
         "instagram.png",
         "linkedin-logo.png",

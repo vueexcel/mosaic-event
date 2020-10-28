@@ -43,10 +43,10 @@
     >
       <v-list nav dense>
         <v-list-item-group v-model="group">
-          <v-list-item v-for="(item, index) in menuList" :key="index">
+          <v-list-item v-for="(menu, index) in menus" :key="index">
             <v-list-item-title
               class="accent--text text-subtitle-2 text-center"
-              >{{ item }}</v-list-item-title
+              >{{ menu }}</v-list-item-title
             >
           </v-list-item>
         </v-list-item-group>
@@ -59,7 +59,7 @@
 export default {
   data() {
     return {
-      menuList: ["Events", "Schedule", "Host", "Login"],
+      menus: ["Events", "Schedule", "Host", "Login"],
       drawer: false,
       group: null,
     };
