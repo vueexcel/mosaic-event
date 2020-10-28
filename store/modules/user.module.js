@@ -12,12 +12,12 @@ export default {
         async fetchUsers({ commit }) {
             const data = await usersCollection.get()
             data.docs.forEach((doc) => {
-                commit('userdetails', doc.data())
+                commit('USER_DETAILS', doc.data())
             })
         },
     },
     mutations: {
-        userdetails: (state, data) => {
+        USER_DETAILS: (state, data) => {
             state.users.push(data);
         },
     }

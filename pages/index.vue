@@ -9,7 +9,7 @@
       >
         <v-carousel
           cycle
-          :interval="300000"
+          :interval="4000"
           hide-delimiters
           :show-arrows="false"
           height="150px"
@@ -35,10 +35,10 @@
           </v-carousel-item>
         </v-carousel>
       </v-col>
-      <v-col cols="12" class="d-flex singleCarousel d-md-none">
+      <v-col cols="12" class="d-flex justify-center d-md-none">
         <v-carousel
           cycle
-          :interval="4000"
+          :interval="3000"
           height="30vh"
           hide-delimiters
           :show-arrows="false"
@@ -73,7 +73,7 @@
       <v-divider class="mt-3 warning"></v-divider>
     </div>
     <div>
-      <card :items="eventsArray" />
+      <slider-card :items="eventsArray" />
     </div>
     <div class="d-flex my-6">
       <v-divider class="mt-3 blue"></v-divider>
@@ -104,13 +104,13 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Card from "../components/card.vue";
+import SliderCard from "../components/card/index.vue";
 
 export default {
   name: "index",
   layout: "default",
   components: {
-    Card,
+    SliderCard,
   },
   data() {
     return {
@@ -148,13 +148,7 @@ export default {
   text-align: right;
   padding-left: 10px;
 }
-.OnlineBrowseContainer img {
-  height: 200px;
-  width: 500px;
-}
-.singleCarousel {
-  justify-content: center;
-}
+
 h2 {
   font-weight: normal;
 }

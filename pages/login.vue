@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "details",
+  name: "login",
   layout: "default",
   data() {
     return {

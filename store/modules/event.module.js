@@ -11,11 +11,12 @@ export default {
     actions: {
         async fetchEvents({ commit }) {
             commit('CLEAR_DATA')
-            const data = await eventsCollection.get()
+            const data = await eventsCollection.orderBy('date', 'asc').limit(8).get()
             data.docs.forEach((doc) => {
                 commit('USER_DETAILS', doc.data())
             })
         },
+        
     },
     mutations: {
         USER_DETAILS: (state, data) => {
