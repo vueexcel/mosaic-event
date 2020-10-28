@@ -42,7 +42,6 @@ export default {
     goToHome() {
       this.$router.push({
         path: "/",
-        query: { ...this.$route.query },
       });
     },
     handleLogin() {
