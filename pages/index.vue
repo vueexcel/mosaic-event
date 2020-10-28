@@ -1,169 +1,89 @@
 <template>
-  <div class="index container">
-    <v-row no-gutters>
-      <v-col
-        v-for="n in 9"
-        :key="n"
-        class="d-md-flex child-flex d-none"
-        cols="4"
-      >
-        <v-carousel
-          cycle
-          :interval="4000"
-          hide-delimiters
-          :show-arrows="false"
-          height="150px"
-        >
-          <v-carousel-item v-for="(slide, i) in slides" :key="i">
-            <v-img
-              :src="
-                require(`../assets/slider/${Math.floor(
-                  Math.random() * 10
-                )}.jpg`)
-              "
-              :lazy-src="require(`../assets/slider/${n}.jpg`)"
+  <v-row justify="center" align="center">
+    <v-col cols="12" sm="8" md="6">
+      <div class="text-center">
+        <logo />
+        <vuetify-logo />
+      </div>
+      <v-card>
+        <v-card-title class="headline">
+          Welcome to the Vuetify + Nuxt.js template
+        </v-card-title>
+        <v-card-text>
+          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
+          <p>
+            For more information on Vuetify, check out the <a
+              href="https://vuetifyjs.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
-          </v-carousel-item>
-        </v-carousel>
-      </v-col>
-      <v-col cols="12" class="d-flex justify-center d-md-none">
-        <v-carousel
-          cycle
-          :interval="3000"
-          height="30vh"
-          hide-delimiters
-          :show-arrows="false"
-        >
-          <v-carousel-item v-for="(slide, i) in slides" :key="i">
-            <v-img
-              :src="
-                require(`../assets/slider/${Math.floor(
-                  Math.random() * 10
-                )}.jpg`)
-              "
-              :lazy-src="require(`../assets/slider/${slide}.jpg`)"
+              documentation
+            </a>.
+          </p>
+          <p>
+            If you have questions, please join the official <a
+              href="https://chat.vuetifyjs.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="chat"
             >
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
-          </v-carousel-item>
-        </v-carousel>
-      </v-col>
-    </v-row>
-    <div class="d-flex mt-10">
-      <v-divider class="mt-3 warning"></v-divider>
-      <span class="px-4 orange--text text-uppercase font-weight-bold"
-        >Live and Upcoming</span
-      >
-      <v-divider class="mt-3 warning"></v-divider>
-    </div>
-    <div>
-      <slider-card :items="eventsArray" />
-    </div>
-    <div class="d-flex my-6">
-      <v-divider class="mt-3 blue"></v-divider>
-      <span class="px-4 blue--text text-uppercase">Browse Online Events</span>
-      <v-divider class="mt-3 blue"></v-divider>
-    </div>
-    <div class="container">
-      <v-row>
-        <v-col
-          class="browserWrapper"
-          cols="12"
-          v-for="n in 8"
-          :key="n"
-          sm="6"
-          md="6"
-        >
-          <div class="text-center">
-            <div class="ImgWrapper">
-              <img class="browserImg fluid" src="../assets/mountain.jpg" />
-            </div>
-            <a class="accent--text">Event Name</a>
+              discord
+            </a>.
+          </p>
+          <p>
+            Find a bug? Report it on the github <a
+              href="https://github.com/vuetifyjs/vuetify/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="contribute"
+            >
+              issue board
+            </a>.
+          </p>
+          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
+          <div class="text-xs-right">
+            <em><small>&mdash; John Leider</small></em>
           </div>
-        </v-col>
-      </v-row>
-    </div>
-  </div>
+          <hr class="my-3">
+          <a
+            href="https://nuxtjs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Nuxt Documentation
+          </a>
+          <br>
+          <a
+            href="https://github.com/nuxt/nuxt.js"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Nuxt GitHub
+          </a>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="primary"
+            nuxt
+            to="/inspire"
+          >
+            Continue
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import SliderCard from "../components/card/index.vue";
+import Logo from '~/components/Logo.vue'
+import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
-  name: "index",
-  layout: "default",
   components: {
-    SliderCard,
-  },
-  data() {
-    return {
-      loading: false,
-      slides: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    };
-  },
-
-  mounted() {
-    this.fetchEvents();
-  },
-  methods: {
-    ...mapActions("eventModule", ["fetchEvents"]),
-  },
-  computed: {
-    ...mapGetters("eventModule", ["eventsArray"]),
-  },
-};
+    Logo,
+    VuetifyLogo
+  }
+}
 </script>
-
-<style scoped>
-.index {
-  padding-top: 30px;
-  max-width: 1050px;
-}
-.browserImg {
-  width: 100%;
-  height: 15vw;
-}
-.browserWrapper:nth-child(odd) div .ImgWrapper {
-  text-align: left;
-  padding-right: 10px;
-}
-.browserWrapper:nth-child(even) div .ImgWrapper {
-  text-align: right;
-  padding-left: 10px;
-}
-
-h2 {
-  font-weight: normal;
-}
-@media screen and (max-width: 600px) {
-  .browserWrapper:nth-child(odd) div .ImgWrapper {
-    text-align: center;
-    padding-right: 0px;
-  }
-  .browserWrapper:nth-child(even) div .ImgWrapper {
-    text-align: center;
-    padding-left: 0px;
-  }
-  .browserImg {
-    width: 100%;
-    height: 50vw;
-  }
-}
-</style>
