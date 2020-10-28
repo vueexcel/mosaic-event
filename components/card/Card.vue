@@ -32,6 +32,7 @@ export default {
   methods: {
     showDetails() {
       this.$router.push({ path: "/:details" });
+      console.log("Route")
     },
   },
 };
