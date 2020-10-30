@@ -6,7 +6,7 @@
       width="100%"
     >
       <v-spacer></v-spacer>
-      <div class="d-sm-block d-none">
+      <div class="d-sm-block d-none menuWrapper">
         <span class="text-uppercase px-4 white--text font-weight-bold"
           >Events</span
         >
@@ -15,14 +15,18 @@
         >
       </div>
       <a @click="goToHome">
-        <img class="ml-sm-0 ml-5 mt-2" src="~/assets/logo.png" height="70px" />
+        <img
+          class="ml-sm-0 ml-5 mt-2"
+          src="~/assets/logo _transparent.png"
+          height="70px"
+        />
       </a>
-      <div class="d-sm-block d-none">
-        <span class="text-uppercase px-4 white--text font-weight-bold"
+      <div class="d-sm-block d-none menuWrapper">
+        <span class="text-uppercase px-5 white--text font-weight-bold"
           >Host</span
         >
         <a @click="goToLogin">
-          <span class="text-uppercase px-4 white--text font-weight-bold"
+          <span class="text-uppercase px-5 white--text font-weight-bold"
             >Login</span
           >
         </a>
@@ -34,13 +38,7 @@
       >
       </v-app-bar-nav-icon>
     </v-app-bar>
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      right
-      temporary
-      class="primary"
-    >
+    <v-navigation-drawer v-model="drawer" fixed right temporary class="primary">
       <v-list nav dense>
         <v-list-item-group v-model="group">
           <v-list-item v-for="(menu, index) in menus" :key="index">
@@ -66,11 +64,17 @@ export default {
   },
   methods: {
     goToHome() {
-      this.$router.push({path: "/"});
+      this.$router.push({ path: "/" });
     },
     goToLogin() {
-      this.$router.push({path: "/login"});
+      this.$router.push({ path: "/login" });
     },
   },
 };
 </script>
+
+<style scoped>
+.menuWrapper {
+  width: 210px;
+}
+</style>

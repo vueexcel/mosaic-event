@@ -14,7 +14,7 @@
     </v-card-text>
 
     <v-card-actions class="d-flex pb-4 justify-center">
-      <v-btn width="96%" outlined color="primary" to="/:details">
+      <v-btn width="96%" outlined color="primary" @click="explore(item.id)">
         Explore
       </v-btn>
     </v-card-actions>
@@ -27,6 +27,16 @@ export default {
     item: {
       type: Object,
       default: () => {},
+    },
+  },
+  methods: {
+    explore(value) {
+      this.$router.push({
+        // name: "details",
+        path: `/${value}`,
+        query: { ...this.$route.query },
+        params: { value },
+      });
     },
   },
 };
