@@ -114,7 +114,6 @@ export default {
   },
   data() {
     return {
-      loading: false,
       slides: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
     };
   },
@@ -133,7 +132,7 @@ export default {
 
 <style scoped>
 .index {
-  padding-top: 30px;
+  padding-top: 40px;
   max-width: 1050px;
 }
 .browserImg {
@@ -164,6 +163,18 @@ h2 {
   .browserImg {
     width: 100%;
     height: 50vw;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .browserImg {
+    width: 100%;
+    height: 10vw;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .browserImg {
+    width: 100%;
+    height: 4vw;
   }
 }
 </style>

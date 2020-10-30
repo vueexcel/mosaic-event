@@ -1,7 +1,7 @@
 <template>
-  <div class="black d-flex justify-center" width="100%">
-    <div class="container px-sm-16 pl-7 px-0">
-      <v-row>
+  <div class="black d-flex justify-center py-3" width="100%">
+    <div class="container px-sm-16 pl-7 pr-0">
+      <v-row no-gutters>
         <v-col cols="12" sm="6" class="pl-sm-0">
           <div>
             <span class="text-uppercase white--text font-weight-bold"
@@ -18,7 +18,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="12" sm="6" class="pl-sm-0">
+        <v-col cols="12" sm="6" class="pl-sm-0 mt-5 mt-sm-0">
           <v-row no-gutters>
             <v-col cols="6">
               <p>
