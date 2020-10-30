@@ -55,11 +55,6 @@ export default {
   max-width: 1350px;
   min-height: 54vh;
 }
-.footer {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-}
 .theme--light.v-application {
   background-color: #f4f4f4;
 }

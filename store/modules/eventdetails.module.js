@@ -18,6 +18,7 @@ export default {
                 commit('EVENT_DETAILS', data.data())
                 commit('FETCH_PROGRESS', false)
             } catch (error) {
+                commit('FETCH_PROGRESS', false)
                 console.log('[:: fetchEventDetails({ commit })--error ::]', error);
                 return error
             }
