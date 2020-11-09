@@ -1,33 +1,20 @@
 <template>
   <div>
     <v-app class="primary">
-      <Header v-if="!username" />
-      <LoginHeader v-if="username" />
       <v-container class="pa-0 screenSize secondary">
-        <div
-          class="loaderWrapper"
-          v-if="loader || (loading && !eventDetails.date)"
-        >
+        <div class="loaderWrapper" v-if="loader">
           <Loader />
         </div>
         <Nuxt v-else />
       </v-container>
-      <Footer />
     </v-app>
   </div>
 </template>
 
 <script>
-import Header from "../components/Header.vue";
-import LoginHeader from "../components/LoginHeader.vue";
-import Footer from "../components/Footer.vue";
 import Loader from "../components/Loader.vue";
-import { mapGetters, mapActions } from "vuex";
 export default {
   components: {
-    Header,
-    LoginHeader,
-    Footer,
     Loader,
   },
   data() {
@@ -35,16 +22,8 @@ export default {
       loader: true,
     };
   },
-  async mounted() {
-    await this.checkUserStatus();
+  mounted() {
     this.loader = false;
-  },
-  computed: {
-    ...mapGetters("loginModule", { username: "username" }),
-    ...mapGetters("eventDetails", ["eventDetails", "loading"]),
-  },
-  methods: {
-    ...mapActions("loginModule", ["checkUserStatus"]),
   },
 };
 </script>
