@@ -33,7 +33,7 @@ export default {
                     }
                 });
             } catch (error) {
-                dispatch('errorMessage/HANDLE_MESSAGE', error)
+                dispatch('errorMessage/handleMessage', error, { root: true })
                 console.log('[:: checkUserStatus({ commit })--error ::]', error);
                 return false
             }
@@ -51,17 +51,17 @@ export default {
             } catch (error) {
                 if (error && error.code) {
                     if (error.code === 'auth/user-not-found') {
-                        const msg = 'There is no user record found! Please click on DOWNLOAD THE APP NOW to create one.'
-                        dispatch('errorMessage/HANDLE_MESSAGE', msg)
+                        const msg = 'There is no user record found!!'
+                        dispatch('errorMessage/handleMessage', msg, { root: true })
                         window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
                     } else if (error.code === 'auth/wrong-password') {
                         const msg = 'Invalid Password.'
-                        dispatch('errorMessage/HANDLE_MESSAGE', msg)
+                        dispatch('errorMessage/handleMessage', msg, { root: true })
                     } else {
-                        dispatch('errorMessage/HANDLE_MESSAGE')
+                        dispatch('errorMessage/handleMessage', { root: true })
                     }
                 } else {
-                    dispatch('errorMessage/HANDLE_MESSAGE')
+                    dispatch('errorMessage/handleMessage', { root: true })
                 }
                 commit("LOGIN_PROGRESS", false);
                 commit("LOGIN_FAIL", error)

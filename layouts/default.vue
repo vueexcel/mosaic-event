@@ -40,8 +40,11 @@ export default {
     this.loader = false;
   },
   computed: {
-    ...mapGetters("loginModule", { username: "username" }),
-    ...mapGetters("eventDetails", ["eventDetails", "loading"]),
+    ...mapGetters({
+      username: "loginModule/username",
+      eventDetails: "eventDetails/eventDetails",
+      loading: "eventDetails/loading",
+    }),
   },
   methods: {
     ...mapActions("loginModule", ["checkUserStatus"]),
@@ -49,7 +52,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 *,
 *::before,
 *::after {
@@ -63,6 +66,7 @@ export default {
 .screenSize {
   display: flex;
   justify-content: center;
+  align-self: center;
   max-width: 1350px;
   min-height: 54vh;
 }

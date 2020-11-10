@@ -6,6 +6,9 @@ export default {
     getters: {
     },
     actions: {
+        handleMessage({ commit }, payload) {
+            commit('HANDLE_MESSAGE', payload)
+        },
     },
     mutations: {
         HANDLE_MESSAGE: (state, data) => {

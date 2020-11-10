@@ -33,7 +33,7 @@
               class="rounded mt-1"
               v-model="form.username"
               placeholder="Username"
-              :rules="nameRules"
+              :rules="[rules.name]"
               outlined
               required
             ></v-text-field>
@@ -44,7 +44,7 @@
               v-model="form.email"
               placeholder="Email"
               @keydown.space.prevent
-              :rules="emailRules"
+              :rules="[rules.email]"
               outlined
               required
             ></v-text-field>
@@ -55,7 +55,7 @@
               v-model="form.password"
               placeholder="Password"
               @keydown.space.prevent
-              :rules="passwordRules"
+              :rules="[rules.password]"
               outlined
               required
             ></v-text-field>
@@ -100,6 +100,8 @@
 
 <script>
 import { mapActions, mapState, mapMutations } from "vuex";
+import { RegistrationRules } from "../common/validationRules.js";
+
 export default {
   layout: "default",
   data() {
@@ -118,19 +120,7 @@ export default {
       timeout: 4000,
       logo: require("~/assets/logo _transparent.png"),
       isLoading: false,
-      nameRules: [
-        (v) => !!v || "Name is required",
-        (v) => (v && v.length <= 12) || "Name must be less than 12 characters",
-      ],
-      passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) =>
-          (v && v.length > 7) || "Weak Password, Must be atleast 8 characters",
-      ],
-      emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
+      rules: RegistrationRules,
     };
   },
 
@@ -139,11 +129,7 @@ export default {
       text: (state) => state.handleMessage,
     }),
     isComplete() {
-      if (
-        this.form.username &&
-        this.form.password &&
-        this.form.email
-      ) {
+      if (this.form.username && this.form.password && this.form.email) {
         const res = this.$refs.form.validate();
         return res;
       }
@@ -181,7 +167,7 @@ export default {
       this.$router.push({ path: "/" });
     },
     onReset() {
-        (this.form.username = ""),
+      (this.form.username = ""),
         (this.form.email = ""),
         (this.form.password = ""),
         (this.url = null);
@@ -221,7 +207,7 @@ button {
 }
 @media screen and (max-width: 540px) {
   .container {
-    width: 96vw;
+    width: 90vw;
   }
 }
 </style>

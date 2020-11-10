@@ -28,7 +28,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 *,
 *::before,
 *::after {
@@ -42,6 +42,7 @@ export default {
 .screenSize {
   display: flex;
   justify-content: center;
+  align-self: center;
   max-width: 1350px;
   min-height: 54vh;
 }

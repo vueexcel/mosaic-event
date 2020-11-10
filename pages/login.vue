@@ -20,7 +20,7 @@
               type="email"
               v-model="form.email"
               placeholder="Email"
-              :rules="emailRules"
+              :rules="[rules.email]"
               outlined
               required
             ></v-text-field>
@@ -30,7 +30,7 @@
               type="password"
               v-model="form.password"
               placeholder="Password"
-              :rules="passwordRules"
+              :rules="[rules.password]"
               outlined
               required
             />
@@ -59,6 +59,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
+import { LoginRules } from "../common/validationRules.js";
 export default {
   name: "login",
   layout: "login",
@@ -73,14 +74,7 @@ export default {
         password: "",
       },
       isLoading: false,
-      passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) => (v && v.length > 7) || "Password too short to match",
-      ],
-      emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
+      rules: LoginRules,
     };
   },
   computed: {
@@ -104,7 +98,7 @@ export default {
           email: this.form.email,
           password: this.form.password,
         });
-        if (response === true) {
+        if (response) {
           this.resetForm();
           this.isLoading = false;
           this.goToHome();
@@ -139,9 +133,9 @@ button {
 .signUpbtn {
   width: 65%;
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 600px) {
   .container {
-    width: 100vw;
+    width: 99vw;
   }
   .signUpbtn {
     width: 95%;

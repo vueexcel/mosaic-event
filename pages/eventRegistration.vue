@@ -66,8 +66,8 @@
         </v-item-group>
       </div>
       <div class="d-sm-flex justify-space-between">
-        <div class="pa-sm-1">
-          <p class="mt-5 mb-1">Event Date</p>
+        <div class="pa-sm-1 pl-sm-0">
+          <p class="mt-3 mt-sm-5 mb-1">Event Date</p>
           <v-dialog
             ref="dialog_date"
             v-model="modal"
@@ -101,7 +101,7 @@
           </v-dialog>
         </div>
         <div class="pa-sm-1">
-          <p class="mt-5 mb-1">Start Time</p>
+          <p class="mt-sm-5 mb-1">Start Time</p>
           <v-dialog
             ref="dialog"
             v-model="modal2"
@@ -135,7 +135,7 @@
           </v-dialog>
         </div>
         <div class="pa-sm-1">
-          <p class="mt-5 mb-1">Duration</p>
+          <p class="mt-sm-5 mb-1">Duration</p>
           <div class="d-flex">
             <div class="select_wrapper">
               <v-select
@@ -158,7 +158,7 @@
           </div>
         </div>
       </div>
-      <p class="mt-3 mb-1">Ticket Price</p>
+      <p class="mt-1 mb-1">Ticket Price</p>
       <div class="d-flex" style="height: 56px">
         <div class="select_wrapper">
           <v-select
@@ -175,17 +175,17 @@
           type="number"
         />
       </div>
-      <p class="mt-9 mb-0">Languages spoken during event</p>
+      <p class="mt-7 mb-0">Languages spoken during event</p>
       <div class="container pa-0">
-        <v-row>
+        <v-row no-gutters>
           <v-col
-            cols="6"
-            sm="4"
+            cols="12"
+            sm="6"
             md="3"
             v-for="(language, n) in languages"
             :key="n"
           >
-            <a class="d-flex align-center">
+            <a class="d-flex align-center justify-center">
               <v-checkbox color="error" v-model="form.selectedLanguages" :value="language">
                 <template v-slot:label>
                   <img width="80px" :src="require(`~/assets/languages/${language}.png`)" class="pa-1" />
@@ -196,19 +196,19 @@
           </v-col>
         </v-row>
       </div>
-      <p class="mt-8 mb-2">
+      <p class="mt-3 mt-sm-5 mb-3">
         What do attendees need to do before the event? Any preparation,
         downloads or items to bring?
       </p>
       <input class="rounded" type="text" v-model="form.attendee_preparation" />
-      <p class="mt-7 mb-2">Attendees</p>
+      <p class="mt-7 mt-sm-9 mb-2">Attendees</p>
       <input
         class="rounded"
         type="number"
         placeholder="No. of attendees"
         v-model="form.no_attendees"
       />
-      <p class="mt-7 mb-2">Attendees can invite others</p>
+      <p class="mt-7 mt-sm-9 mb-2">Attendees can invite others</p>
       <v-select
         v-model="form.attendee_inviting"
         :items="options"
@@ -222,16 +222,16 @@
         :items="options"
         outlined
       ></v-select>
-      <p class="mt-2 mb-2">Co-hosts</p>
+      <p class="mt-1 mb-2">Co-hosts</p>
       <input type="text" class="rounded" v-model="form.co_host" />
-      <p class="mt-9 mb-2">Event Keywords</p>
+      <p class="mt-8 mb-2">Event Keywords</p>
       <input
         class="rounded"
         placeholder="Set your keywords"
         type="text"
         v-model="form.event_keywords"
       />
-      <p class="mt-9 mb-2">
+      <p class="mt-8 mb-2">
         Any other question you would like to ask attendees
       </p>
       <textarea v-model="form.optional_question" class="rounded"></textarea>
