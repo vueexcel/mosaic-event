@@ -5,6 +5,16 @@
       height="100px"
       width="100%"
     >
+      <button @click="$router.go(-1)">
+        <v-icon class="white--text hidden-sm-and-up" size="30"
+          >mdi-chevron-left</v-icon
+        >
+      </button>
+      <a @click="goToProfile">
+        <span class="text-uppercase white--text font-weight-bold" v-if="username">
+          {{ username }}
+        </span>
+      </a>
       <v-spacer></v-spacer>
       <div class="d-sm-block d-none menuWrapper">
         <span class="text-uppercase px-4 white--text font-weight-bold"
@@ -16,20 +26,20 @@
       </div>
       <a @click="goToHome">
         <img
-          class="ml-sm-0 ml-5 mt-2"
+          class="mr-sm-0 mr-8 mt-2"
           src="~/assets/logo _transparent.png"
           height="70px"
         />
       </a>
-      <div class="d-sm-block d-none menuWrapper">
+      <div class="d-sm-block d-none mr-8 menuWrapper">
         <a @click="createEvent">
           <span class="text-uppercase px-5 white--text font-weight-bold"
             >Host
           </span></a
         >
-        <a @click="goToLogin">
+        <a @click="logoutprofile">
           <span class="text-uppercase px-5 white--text font-weight-bold"
-            >Login</span
+            >Logout</span
           >
         </a>
       </div>
@@ -57,21 +67,27 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      menus: ["Events", "Schedule", "Host", "Login"],
+      menus: ["Events", "Schedule", "Host", "Logout"],
       drawer: false,
       group: null,
     };
   },
 
+  computed: {
+    ...mapGetters("loginModule", { username: "username" }),
+  },
   methods: {
+    ...mapActions("loginModule", ["logout"]),
     goToHome() {
       this.$router.push({ path: "/" });
     },
-    goToLogin() {
-      this.$router.push({ path: "/login" });
+    logoutprofile() {
+      this.logout();
+      this.goToHome();
     },
     createEvent() {
       this.$router.push({ path: "/eventRegistration" });
@@ -84,8 +100,11 @@ export default {
       } else if (data == "Host") {
         this.createEvent();
       } else {
-        this.goToLogin();
+        this.logoutprofile();
       }
+    },
+    goToProfile() {
+      this.$router.push({ path: "/" });
     },
   },
 };

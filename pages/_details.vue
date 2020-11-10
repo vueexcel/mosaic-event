@@ -11,7 +11,14 @@
       <p class="mb-0">Language: English</p>
       <p class="mb-0">Time Left for Event</p>
       <div class="py-3">
-        <v-icon class="px-1" medium :color="`${logo.color}`" v-for="(logo, item) in logos" :key="item">{{`mdi-${logo.name}`}}</v-icon>
+        <v-icon
+          class="px-1"
+          medium
+          :color="`${logo.color}`"
+          v-for="(logo, item) in logos"
+          :key="item"
+          >{{ `mdi-${logo.name}` }}</v-icon
+        >
         <v-icon medium class="px-1"> mdi-heart-outline </v-icon>
       </div>
       <button class="accent joinButton white--text my-4 py-1 px-md-8">
@@ -21,7 +28,14 @@
     <div class="container px-3 mb-2">
       <v-row no-gutters v-for="(item, index) in data" :key="index" class="mt-8">
         <v-col cols="12" sm="4">
-          <div class="text-sm-left">
+          <div class="text-sm-left" v-if="index == 2 || index == 3">
+            <b>{{ item.question }}</b>
+            <div v-if="index == 2">
+              <p class="mb-0">{{ eventDetails.host }}</p>
+              <img :src="image" width="130px" />
+            </div>
+          </div>
+          <div class="text-left" v-else>
             <b>{{ item.question }}</b>
             <div v-if="index == 2">
               <p class="mb-0">{{ eventDetails.host }}</p>
@@ -32,18 +46,21 @@
         <v-col cols="12" sm="8">
           <div class="text-left">
             <p v-if="item.answer">{{ item.answer }}</p>
-            <div v-if="item.question == 'Who else you meet'">
+            <div
+              class="text-center"
+              v-if="item.question == 'Who else you meet'"
+            >
               <img
                 v-for="n in 8"
                 :key="n"
                 :src="image"
-                class="ml-3 AttendeeImage"
+                class="ml-3 attendeeImage"
               />
             </div>
             <div class="container" v-if="item.question == 'Conversation'">
               <v-row v-for="n in 3" :key="n" no-gutters>
                 <v-col cols="3" class="text-left">
-                  <img :src="image" class="ConversationImage" />
+                  <img :src="image" class="conversationImage" />
                 </v-col>
                 <v-col cols="9" class="text-left"
                   >To create portfolio for your project, i just need screenshots
@@ -105,6 +122,7 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   layout: "default",
+  // middleware: "auth",
   data() {
     return {
       image: require("~/assets/isometric.jpg"),
@@ -127,7 +145,11 @@ export default {
           answer:
             "Once done, upload them to your company google drive folder and share it with me. If you have hi res designs from like figma, pdf, phoshop, xd etc upload those as well in the drive folder.Open inspect element in the chrome and go the response mode option.From there select responsive in the size and put in the size as 1280x720 px for desktop and then next to screen size there is a menu option. Click on it to see capture full screenshot",
         },
-        { question: "Your host", answer: "About host" },
+        {
+          question: "Your host",
+          answer:
+            "From there select iphone 8 or can also put 414 as width. Click on it to see capture full screenshot",
+        },
         { question: "Who else you meet" },
         { question: "Conversation" },
         { question: "Reviews" },
@@ -155,10 +177,10 @@ export default {
     await this.fetchEventDetails(this.$route.params);
   },
   methods: {
-    ...mapActions("eventdetails", ["fetchEventDetails"]),
+    ...mapActions("eventDetails", ["fetchEventDetails"]),
   },
   computed: {
-    ...mapGetters("eventdetails", ["eventDetails"]),
+    ...mapGetters("eventDetails", ["eventDetails"]),
   },
 };
 </script>
@@ -185,10 +207,10 @@ export default {
   object-fit: contain;
   width: 100%;
 }
-.AttendeeImage {
+.attendeeImage {
   width: 142px;
 }
-.ConversationImage {
+.conversationImage {
   width: 50px;
 }
 .reviewWrapper {
@@ -214,10 +236,10 @@ export default {
   padding: 0px;
 }
 @media screen and (min-width: 640px) {
-  .ConversationImage {
+  .conversationImage {
     width: 80px;
   }
-  .AttendeeImage {
+  .attendeeImage {
     width: 150px;
     text-align: left;
   }
